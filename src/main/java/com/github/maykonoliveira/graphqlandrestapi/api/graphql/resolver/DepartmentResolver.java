@@ -2,11 +2,19 @@ package com.github.maykonoliveira.graphqlandrestapi.api.graphql.resolver;
 
 import com.github.maykonoliveira.graphqlandrestapi.api.graphql.specification.SpecificationUtils;
 import com.github.maykonoliveira.graphqlandrestapi.application.domain.Department;
+import com.github.maykonoliveira.graphqlandrestapi.application.domain.Employee;
+import com.github.maykonoliveira.graphqlandrestapi.application.domain.Organization;
 import com.github.maykonoliveira.graphqlandrestapi.application.repository.DepartmentRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.schema.DataFetchingEnvironment;
+import graphql.schema.DataFetchingFieldSelectionSet;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.criteria.Fetch;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;

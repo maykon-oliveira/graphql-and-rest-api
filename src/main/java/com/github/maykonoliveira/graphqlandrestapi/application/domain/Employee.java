@@ -1,5 +1,7 @@
 package com.github.maykonoliveira.graphqlandrestapi.application.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Employee {
   private int salary;
   private int age;
 
+  @JsonBackReference
   @ManyToOne(fetch = FetchType.LAZY)
   private Department department;
 

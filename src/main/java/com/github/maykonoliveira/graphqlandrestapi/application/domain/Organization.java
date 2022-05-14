@@ -1,5 +1,7 @@
 package com.github.maykonoliveira.graphqlandrestapi.application.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,9 +13,11 @@ public class Organization {
 
   private String name;
 
+  @JsonBackReference
   @OneToMany(mappedBy = "organization")
   private Set<Department> departments;
 
+  @JsonBackReference
   @OneToMany(mappedBy = "organization")
   private Set<Employee> employees;
 

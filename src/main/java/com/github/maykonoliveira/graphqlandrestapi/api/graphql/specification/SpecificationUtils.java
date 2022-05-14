@@ -19,6 +19,13 @@ public final class SpecificationUtils {
       if (fieldSelectionSet.contains(attribute)) spec = spec.and(fetch(attribute));
     }
 
+    spec =
+        spec.and(
+            (root, query, criteriaBuilder) -> {
+              query.distinct(true);
+              return null;
+            });
+
     return spec;
   }
 
@@ -28,7 +35,7 @@ public final class SpecificationUtils {
 
   public static <T, U> Specification<T> fetch(String attribute) {
     return (root, query, builder) -> {
-      Fetch<T, U> f = root.fetch(attribute, JoinType.INNER);
+      Fetch<T, U> f = root.fetch(attribute, JoinType.LEFT);
       var join = (Join<T, U>) f;
       return join.getOn();
     };

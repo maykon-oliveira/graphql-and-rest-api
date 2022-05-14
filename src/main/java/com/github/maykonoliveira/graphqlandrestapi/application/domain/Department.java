@@ -1,9 +1,18 @@
 package com.github.maykonoliveira.graphqlandrestapi.application.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraph(
+    name = "department-entity-graph",
+    attributeNodes = {
+      @NamedAttributeNode("organization"),
+      @NamedAttributeNode("employees"),
+    })
 public class Department {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,6 +20,7 @@ public class Department {
 
   private String name;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "department")
   private Set<Employee> employees;
 
